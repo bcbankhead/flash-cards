@@ -1,0 +1,22 @@
+form(method="post" action="/multipleChoice")
+  label(for="question") Question: 
+  p
+  textarea(name="question" id="question")
+  p
+  label(for="correctAnswer") Correct Answer:
+  p
+  input(type="text" name="correctAnswer" id="correctAnswer")
+  p
+  label(for="explanation") Explanation of Correct Answer:
+  p
+  textarea(name="explanation" id="explanation")
+  p
+  label(for="incorrectAnswers") Incorrect Answers:
+  p
+  input(type="text" name="incorrectOne")
+  p
+  input(type="text" name="incorrectTwo")
+  p
+  input(type="text" name="incorrectThree")
+  p
+  input(type="submit" value="Submit Question")

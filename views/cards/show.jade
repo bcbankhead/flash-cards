@@ -1,0 +1,7 @@
+extends ../layout
+
+block content
+  h1 #{category.name}
+  
+  h1 Start Game
+  a(href='/cards/' + category._id + '/questions/new') Submit A New Question

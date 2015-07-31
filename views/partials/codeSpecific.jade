@@ -1,0 +1,14 @@
+form(method="post" action="/codeSpecific")
+  label(for="question") Question: 
+  p
+  textarea(name="question" id="question")
+  p
+  label(for="correctAnswer") Correct Answer:
+  p
+  input(type="text" name="correctAnswer" id="correctAnswer")
+  p
+  label(for="explanation") Explanation of Correct Answer:
+  p
+  textarea(name="explanation" id="explanation")
+  p
+  input(type="submit" value="Submit Question")
