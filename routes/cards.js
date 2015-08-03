@@ -81,4 +81,10 @@ router.post('/questions/:id/codeSpecific', function(req, res, next){
   })
 })
 
+router.post('/submit/:redirect', function (req, res, next) {
+  usersCollection.update({_id: cookie}, {$set:{
+    
+  }})
+})
+
 module.exports = router;
