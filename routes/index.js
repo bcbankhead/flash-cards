@@ -16,7 +16,7 @@ router.get('/', function(req, res, next) {
         functions.writeData(linkedUsers,req.user,function(records){
           console.log(records);
         })
-        res.render('cards/show', { profile: response.body });
+        res.redirect('cards/index');
       })
   } else {
     res.render('index', {  });
