@@ -1,7 +1,8 @@
 var express = require('express');
 var router = express.Router();
-var db = require('monk')(process.env.MONGOLAB_URI)
-var categoryCollection = db.get('categories')
+var db = require('monk')(process.env.MONGOLAB_URI);
+var categoryCollection = db.get('categories');
+var questionCollection = db.get('questions');
 
 router.get('/', function(req, res, next) {
   res.render('cards/index', { title: 'Express' });
@@ -32,6 +33,42 @@ router.get('/:id/questions/new', function(req, res, next){
 
 router.post('/:id/questions/new', function(req, res, next){
   res.render('cards/questions/new', { categoryId: req.params.id, questionType: req.body.questionType})
+})
+
+router.post('/questions/:id/openEnded', function(req, res, next){
+  questionCollection.insert({
+    categoryId: req.params.id,
+    // userId: cookie
+    question: req.body.question,
+    answer: req.body.answer,
+    topAnswers: []
+  }, function(err, data){
+    res.redirect('/cards/' + req.params.id + '/show')
+  })
+})
+
+router.post('/questions/:id/openEnded', function(req, res, next){
+  questionCollection.insert({
+    categoryId: req.params.id,
+    // userId: cookie
+    question: req.body.question,
+    answer: req.body.answer,
+  }, function(err, data){
+    res.redirect('/cards/' + req.params.id + '/show')
+  })
+})
+
+router.post('/questions/:id/multipleChoice', function(req, res, next){
+  questionCollection.insert({
+    categoryId: req.params.id,
+    //userId: cookie
+    question: req.body.question,
+    correctAnswer: req.body.correctAnswer,
+    explanation: req.body.correctAnswer,
+    incorrectAnswers: [ req.body.incorrectOne,
+                        req.body.incorrectTwo,
+                        req.body.incorrectThree]
+  })
 })
 
 module.exports = router;
