@@ -1,10 +1,15 @@
 var express = require('express');
 var path = require('path');
+require('dotenv').load()
+var unirest = require('unirest');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-require('dotenv').load()
+
+var functions = require('./lib/serverside.js');
+var monk = require('monk')(process.env.MONGOLAB_URI)
+var linkedUsers = monk.get('users')
 
 var passport = require('passport');
 var LinkedInStrategy = require('passport-linkedin-oauth2').Strategy
@@ -84,7 +89,7 @@ app.use(function (req, res, next){
         functions.writeData(linkedUsers,req.user,function(records){
           console.log(records);
         })
-        res.render('cards/show', { profile: response.body });
+        res.redirect('/cards');
       })
   } else {
     res.render('index', { message: "notLoggedIn" });
