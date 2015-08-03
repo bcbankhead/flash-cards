@@ -1,17 +1,17 @@
 extends ../layout
 
 block content
-  h1 #{category.name}
   if questions.length > 0
-    a(href='/cards/' + category._id + '/questions/new') Submit A New Question
+    h1 #{category.name}
+      a(href='/cards/' + category._id + '/questions/new') &nbsp - Submit A New Question
     p
     div.question
       for question in questions
         a(href="#" id=question._id onclick='overlay('+JSON.stringify(question)+')')
           div.questionElement
             p= question.question
-            a(href='#') Hint
-  else 
+  else
+    h1 #{category.name}
     p There are no questions for this category yet. 
     a(href='/cards/' + category._id + '/questions/new') Submit A New Question
     
@@ -26,7 +26,7 @@ block content
             |Hint:
           button#submitAnswer Submit
           p
-          a(href="#" onclick='overlay()') Cancel
+          a(href="" onclick='overlay()') Cancel
       div.back 
         div.result
         div.points
@@ -34,8 +34,12 @@ block content
           form(action='/cards/submit/goToChallanges' method='post')
             input(type="hidden" name="points" id="userPointChallengeRedirect")
             input(type="hidden" name="userAnswer" id="userAnswerChallengeRedirect")
-            input(type="submit" value="I want to answer more questions about " +category.name)
+            input(type="hidden" name='categoryID' id="categoryIDChallengeRedirect" value=category._id)
+            input(type="hidden" name="questionID" id="questionIDChallengeRedirect") 
+            input(type="submit" value="I want to answer more questions about " + category.name)
           form(action='/cards/submit/goToCategories' method='post')
             input(type="hidden" name="points" id="userPointsCategoriesRedirect")
             input(type="hidden" name="userAnswer" id="userAnswerCategoryRedirect")
+            input(type="hidden" name='categoryID' id="categoryIDCategoryRedirect" value=category._id)
+            input(type="hidden" name="questionID" id="questionIDCategoryRedirect") 
             input(type="submit" value="I want to choose a different category")
