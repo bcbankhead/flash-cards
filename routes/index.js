@@ -1,11 +1,26 @@
 var express = require('express');
 var router = express.Router();
-var passport = require('passport');
+var unirest = require('unirest');
+var monk = require('monk')('localhost/linkedin-demo')
+var linkedUsers = monk.get('users')
+var functions = require('../lib/serverside.js');
 
 /* GET home page. */
-router.get('/', passport.authenticate('slack', { failureRedirect : '/auth/slack/callback'}), function(req, res, next) {
-  console.log(req.cookies.user);
-  res.render('index', {title: 'title'});
+router.get('/', function(req, res, next) {
+  if(req.isAuthenticated()) {
+    unirest.get('https://api.linkedin.com/v1/people/~:(id,num-connections,picture-url)')
+      .header('Authorization', 'Bearer ' + req.user.token)
+      .header('x-li-format', 'json')
+      .end(function (response) {
+        console.log(req.user.id);
+        functions.writeData(linkedUsers,req.user,function(records){
+          console.log(records);
+        })
+        res.render('index', { profile: response.body });
+      })
+  } else {
+    res.render('index', {  });
+  }
 });
 
 module.exports = router;

@@ -5,27 +5,25 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-require('dotenv').load()
+var passport = require('passport');
+var LinkedInStrategy = require('passport-linkedin-oauth2').Strategy
 
 var routes = require('./routes/index');
-var authRoutes = require('./routes/auth');
 var users = require('./routes/users');
-<<<<<<< HEAD
-var cards = require('./routes/cards');
-=======
-
-var passport = require('passport');
-var SlackStrategy = require('passport-slack').Strategy
+var authRoutes = require('./routes/auth');
 
 var session = require('cookie-session');
 require('dotenv').load()
 
->>>>>>> master
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
+// app.use(cookieSession({
+//   name: 'session',
+//   keys: [key1, key2, key3]
+// }))
 
 app.use(session({
   name: 'session',
@@ -43,23 +41,18 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(passport.initialize());
 app.use(passport.session());
 
-passport.use(new SlackStrategy({
-   clientID: process.env.SLACK_CLIENT_ID,
-   clientSecret: process.env.SLACK_CLIENT_SECRET,
-   callbackURL: process.env.CALLBACK_URL
- },
-//  function(accessToken, refreshToken, profile, done) {
-//    User.findOrCreate({ SlackId: profile.id }, function (err, user) {
-//        , function (err, user) {
-//      return done(err, user);
-//    });
-//  }
-// ));
-
+passport.use(new LinkedInStrategy({
+    clientID: process.env.LINKEDIN_CLIENT_ID,
+    clientSecret: process.env.LINKEDIN_CLIENT_SECRET,
+    callbackURL: process.env.HOST + "/auth/linkedin/callback",
+    scope: ['r_emailaddress', 'r_basicprofile'],
+    state: true
+  },
   function(accessToken, refreshToken, profile, done) {
-    done(null, { SlackId: profile.id })
+    done(null, {id: profile.id, displayName: profile.displayName, token: accessToken})
   }
 ));
+//http://localhost:3000/auth/slack/callback
 
 passport.serializeUser(function(user, done) {
   done(null, user);
@@ -74,35 +67,10 @@ app.use(function (req, res, next) {
   next()
 })
 
-app.get('/auth/slack',
-    passport.authorize('slack'));
-
-app.get('/auth/slack/callback',
-  passport.authorize('slack', { failureRedirect: '/login' }),
-  function(req, res) {
-    // Successful authentication, redirect home.
-    res.render('dummy');
-  });
-
-// app.use(function (req,res,next) {
-//   if(req.isAuthenticated()){
-//     console.log(req.isAuthenticated());
-//     next()
-//   } else {
-//     console.log("not Authed");
-//     res.redirect('/auth/slack');
-//   }
-// })
-
 app.use('/', routes);
 app.use('/', authRoutes);
 app.use('/users', users);
-<<<<<<< HEAD
-app.use('/cards', cards);
-=======
 
-
->>>>>>> master
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
