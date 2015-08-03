@@ -21,7 +21,6 @@ var cards = require('./routes/cards');
 
 var session = require('cookie-session');
 
-
 var app = express();
 
 // view engine setup
@@ -74,11 +73,6 @@ app.use(function (req, res, next) {
   next()
 })
 
-app.use('/', routes);
-app.use('/', authRoutes);
-app.use('/users', users);
-app.use('/cards', cards);
-
 app.use(function (req, res, next){
   if(req.isAuthenticated()) {
     unirest.get('https://api.linkedin.com/v1/people/~:(id,num-connections,picture-url)')
@@ -96,6 +90,10 @@ app.use(function (req, res, next){
   }
 })
 
+app.use('/', routes);
+app.use('/', authRoutes);
+app.use('/users', users);
+app.use('/cards', cards);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -127,6 +125,5 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
-
 
 module.exports = app;
