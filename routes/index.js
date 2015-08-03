@@ -16,7 +16,7 @@ router.get('/', function(req, res, next) {
         functions.writeData(linkedUsers,req.user,function(records){
           console.log(records);
         })
-        res.redirect('cards/index');
+        res.redirect('/cards');
       })
   } else {
     res.render('index', {  });

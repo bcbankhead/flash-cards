@@ -73,6 +73,10 @@ app.use(function (req, res, next) {
   next()
 })
 
+app.use('/', routes);
+app.use('/', authRoutes);
+app.use('/users', users);
+
 app.use(function (req, res, next){
   if(req.isAuthenticated()) {
     unirest.get('https://api.linkedin.com/v1/people/~:(id,num-connections,picture-url)')
@@ -83,16 +87,13 @@ app.use(function (req, res, next){
         functions.writeData(linkedUsers,req.user,function(records){
           console.log(records);
         })
-        res.redirect('/cards');
+        next()
       })
   } else {
     res.render('index', { message: "notLoggedIn" });
   }
 })
 
-app.use('/', routes);
-app.use('/', authRoutes);
-app.use('/users', users);
 app.use('/cards', cards);
 
 // catch 404 and forward to error handler
