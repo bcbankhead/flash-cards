@@ -34,6 +34,7 @@ function overlay(question) {
 
 
 document.getElementById('submitAnswer').addEventListener('click', function() {
+  console.log(questionObject._id);
   var answers = document.getElementsByTagName('input')
   var correctAnswer = questionObject.correctAnswer;
   [].forEach.call(answers, function (e,i,a) {
@@ -51,6 +52,10 @@ document.getElementById('submitAnswer').addEventListener('click', function() {
         userPointsCategoriesRedirect.value = 1;
         var userAnswerCategoryRedirect = document.getElementById('userAnswerCategoryRedirect')
         userAnswerCategoryRedirect.value = e.value
+        var questionIDCategoryRedirect = document.getElementById('questionIDCategoryRedirect')
+        questionIDCategoryRedirect.value = questionObject._id
+        var questionIDChallengeRedirect = document.getElementById('questionIDChallengeRedirect')
+        questionIDChallengeRedirect.value = questionObject._id;
         $(".overlaySegment").flip(true);
       } else {
         var result = document.getElementsByClassName('result')[0];
@@ -64,7 +69,12 @@ document.getElementById('submitAnswer').addEventListener('click', function() {
         var userPointsCategoriesRedirect = document.getElementById('userPointsCategoriesRedirect')
         userPointsCategoriesRedirect.value = 0;
         var userAnswerCategoryRedirect = document.getElementById('userAnswerCategoryRedirect')
-        userAnswerCategoryRedirect.value = e.value
+        userAnswerCategoryRedirect.value = e.value;
+        console.log(questionObject._id, typeof(questionObject._id))
+        var questionIDChallengeRedirect = document.getElementById('questionIDChallengeRedirect')
+        questionIDChallengeRedirect.value = questionObject._id;
+        var questionIDCategoryRedirect = document.getElementById('questionIDCategoryRedirect')
+        questionIDCategoryRedirect.value = questionObject._id
         $(".overlaySegment").flip(true);
       }
     }

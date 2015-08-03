@@ -3,6 +3,7 @@ var router = express.Router();
 var db = require('monk')(process.env.MONGOLAB_URI);
 var categoryCollection = db.get('categories');
 var questionCollection = db.get('questions');
+var userAnswerCollection = db.get('userAnswers');
 
 router.get('/', function(req, res, next) {
   categoryCollection.find({}, function(err, data){
@@ -45,8 +46,7 @@ router.post('/questions/:id/openEnded', function(req, res, next){
     // userId: cookie
     questionType: 'openEnded',
     question: req.body.question,
-    answer: req.body.answer,
-    topAnswers: []
+    answer: req.body.answer
   }, function(err, data){
     res.redirect('/cards/' + req.params.id + '/show')
   })
@@ -82,9 +82,21 @@ router.post('/questions/:id/codeSpecific', function(req, res, next){
 })
 
 router.post('/submit/:redirect', function (req, res, next) {
-  usersCollection.update({_id: cookie}, {$set:{
-    
-  }})
+  console.log(req.body);
+  userAnswerCollection.insert({
+    userId: req.user.id,
+    questionId: req.body.questionID,
+    categoryId: req.body.categoryID,
+    answerPoints: req.body.points,
+    userAnswer: req.body.userAnswer,
+  }, function(err, data){
+    if (req.params.redirect === 'goToCategories'){
+      res.redirect("/cards");
+    } else {
+      res.redirect("/cards/"+ req.body.categoryID+"/show");
+    }
+  })
 })
+
 
 module.exports = router;
