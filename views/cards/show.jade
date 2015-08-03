@@ -16,12 +16,25 @@ block content
     
   div#overlay
     div.overlaySegment
-      form(action="/cards/" method="post")
-        div.overlayQuestion question
+      div.front
+        div.overlayQuestion 
         div.overlayAnswer
         div.overlaySubmit
-          input(type="submit" value="Submit")
+          button#submitAnswer Submit
           p
           a(href="#" onclick='overlay()') Cancel
+      div.back 
+        div.result
+        div.points
+        div.overLayBackButtons
+          form(action='/cards/submit/goToChallanges' method='post')
+            input(type="hidden" name="points" id="userPointChallengeRedirect")
+            input(type="hidden" name="userAnswer" id="userAnswerChallengeRedirect")
+            input(type="submit" value="I want to answer more questions about " +category.name)
+          form(action='/cards/submit/goToCategories' method='post')
+            input(type="hidden" name="points" id="userPointsCategoriesRedirect")
+            input(type="hidden" name="userAnswer" id="userAnswerCategoryRedirect")
+            input(type="submit" value="I want to choose a different category")
+    
       
     

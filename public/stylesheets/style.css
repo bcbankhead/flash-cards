@@ -54,7 +54,6 @@ a {
     height: 500px;
     margin: 0 auto;
     margin-top: 100px;
-    background-color: rgba(092,092,092,0.9);
     text-align:center;
     font-family: 'Josefin Sans', sans-serif;
     font-weight: 300;
@@ -62,6 +61,7 @@ a {
     color: #66CC00 ;
     padding: 20px;
 }
+
 
 .overlayQuestion, .overlayAnswer, .overlaySubmit{
   width: 100%;
@@ -72,4 +72,10 @@ a {
 
 .overlayAnswer {
   height: 300px;
+}
+.front {
+  background-color: rgba(092,092,092,0.9);
+}
+.back {
+  background-color: white;
 }
