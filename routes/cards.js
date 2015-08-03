@@ -53,9 +53,21 @@ router.post('/questions/:id/openEnded', function(req, res, next){
     // userId: cookie
     question: req.body.question,
     answer: req.body.answer,
-    topAnswers: []
   }, function(err, data){
     res.redirect('/cards/' + req.params.id + '/show')
+  })
+})
+
+router.post('/questions/:id/multipleChoice', function(req, res, next){
+  questionCollection.insert({
+    categoryId: req.params.id,
+    //userId: cookie
+    question: req.body.question,
+    correctAnswer: req.body.correctAnswer,
+    explanation: req.body.correctAnswer,
+    incorrectAnswers: [ req.body.incorrectOne,
+                        req.body.incorrectTwo,
+                        req.body.incorrectThree]
   })
 })
 
