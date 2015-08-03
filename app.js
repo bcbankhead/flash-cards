@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+require('dotenv').load()
 
 var passport = require('passport');
 var LinkedInStrategy = require('passport-linkedin-oauth2').Strategy
@@ -13,7 +14,7 @@ var users = require('./routes/users');
 var authRoutes = require('./routes/auth');
 
 var session = require('cookie-session');
-require('dotenv').load()
+
 
 var app = express();
 
