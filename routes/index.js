@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var unirest = require('unirest');
-var monk = require('monk')('localhost/linkedin-demo')
+var monk = require('monk')(process.env.MONGOLAB_URI)
 var linkedUsers = monk.get('users')
 var functions = require('../lib/serverside.js');
 
