@@ -9,7 +9,7 @@ function overlay(question) {
       input.type = 'radio';
       var answerArray = question.incorrectAnswers
       answerArray.splice(Math.floor(Math.random()*answerArray.length-1),1,question.correctAnswer)
-      alert(answerArray);
+      //alert(answerArray);
     }
   }
     modal = document.getElementById("overlay");

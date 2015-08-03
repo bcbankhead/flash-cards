@@ -12,6 +12,7 @@ var LinkedInStrategy = require('passport-linkedin-oauth2').Strategy
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var authRoutes = require('./routes/auth');
+var cards = require('./routes/cards');
 
 var session = require('cookie-session');
 
@@ -71,6 +72,7 @@ app.use(function (req, res, next) {
 app.use('/', routes);
 app.use('/', authRoutes);
 app.use('/users', users);
+app.use('/cards', cards);
 
 app.use(function (req, res, next){
   if(req.isAuthenticated()) {

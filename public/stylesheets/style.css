@@ -50,6 +50,7 @@ a {
 }
 
 #overlay .overlaySegment {
+    position:relative;
     width: 70%;
     height: 500px;
     margin: 0 auto;
@@ -72,4 +73,21 @@ a {
 
 .overlayAnswer {
   height: 300px;
+}
+
+#hint {
+  display:inline-block;
+  background-color: rgb(255, 0, 0);
+  padding:5px;
+}
+
+#hintOverlay {
+  position:absolute;
+  top:10px;
+  left: 10px;
+  display:none;
+  border:1px solid black;
+  width:200px;
+  height:500px;
+  background-color: rgba(255, 255, 255, .5);
 }

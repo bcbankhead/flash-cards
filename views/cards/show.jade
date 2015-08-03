@@ -10,6 +10,7 @@ block content
         a(href="#" id=question._id onclick='overlay('+JSON.stringify(question)+')')
           div.questionElement
             p= question.question
+            a(href='#') Hint
   else 
     p There are no questions for this category yet. 
     a(href='/cards/' + category._id + '/questions/new') Submit A New Question
@@ -20,8 +21,11 @@ block content
         div.overlayQuestion question
         div.overlayAnswer
         div.overlaySubmit
-          input(type="submit" value="Submit")
-          p
-          a(href="#" onclick='overlay()') Cancel
+          #hint Hint
+        #hintOverlay
+        |Hint:
+        
+        input(type="submit" value="Submit")
+        p
+        a(href="#" onclick='overlay()') Cancel
       
-    
