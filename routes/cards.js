@@ -5,7 +5,9 @@ var categoryCollection = db.get('categories');
 var questionCollection = db.get('questions');
 
 router.get('/', function(req, res, next) {
-  res.render('cards/index', { title: 'Express' });
+  categoryCollection.find({}, function(err, data){
+    res.render('cards/index', {data: data});
+  })
 });
 
 router.get('/new', function(req, res, next){
@@ -23,7 +25,9 @@ router.post('/new', function(req, res, next){
 
 router.get('/:id/show', function(req, res, next) {
   categoryCollection.findOne({_id: req.params.id}, function(err, category){
-    res.render('cards/show', {category: category});
+    questionCollection.find({categoryId: req.params.id}, function(err, questions){
+      res.render('cards/show', {category: category, questions: questions});
+    })
   })
 });
 
@@ -39,20 +43,10 @@ router.post('/questions/:id/openEnded', function(req, res, next){
   questionCollection.insert({
     categoryId: req.params.id,
     // userId: cookie
+    questionType: 'openEnded',
     question: req.body.question,
     answer: req.body.answer,
     topAnswers: []
-  }, function(err, data){
-    res.redirect('/cards/' + req.params.id + '/show')
-  })
-})
-
-router.post('/questions/:id/openEnded', function(req, res, next){
-  questionCollection.insert({
-    categoryId: req.params.id,
-    // userId: cookie
-    question: req.body.question,
-    answer: req.body.answer,
   }, function(err, data){
     res.redirect('/cards/' + req.params.id + '/show')
   })
@@ -62,12 +56,28 @@ router.post('/questions/:id/multipleChoice', function(req, res, next){
   questionCollection.insert({
     categoryId: req.params.id,
     //userId: cookie
+    questionType: 'multipleChoice',
     question: req.body.question,
     correctAnswer: req.body.correctAnswer,
-    explanation: req.body.correctAnswer,
+    explanation: req.body.explanation,
     incorrectAnswers: [ req.body.incorrectOne,
                         req.body.incorrectTwo,
-                        req.body.incorrectThree]
+                        req.body.incorrectThree ]
+  }, function(err, data){
+    res.redirect('/cards/' + req.params.id + '/show');
+  })
+});
+
+router.post('/questions/:id/codeSpecific', function(req, res, next){
+  questionCollection.insert({
+    categoryId: req.params.id,
+    //userId: cookie
+    questionType: 'codeSpecific',
+    question: req.body.question,
+    correctAnswer: req.body.correctAnswer,
+    explanation: req.body.explanation,
+  }, function(err, data){
+    res.redirect('/cards/' + req.params.id + '/show');
   })
 })
 
