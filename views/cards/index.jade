@@ -2,8 +2,10 @@ extends ../layout
 
 block content
   h1 Choose a Category
-  p
-  a(href="/cards/" + challenge_id + "/show") 
-    img(src="../../images/js-icon.jpeg")
+  div.category
+    for val in data
+      div.categoryElement
+        a(href="/cards/" + val._id + '/show')
+          img(src=val.icon )
   a(href='/cards/new')
     h1 Add New Category

@@ -6,3 +6,70 @@ body {
 a {
   color: #00B7FF;
 }
+
+.category {
+  width: 100%;
+}
+
+.categoryElement {
+  background-color: #E0E0E0;
+  float: left;
+  margin: 10px;
+  height: 200px;
+  width: 200px;
+}
+
+.categoryElement img {
+  height: 100%;
+  width: 100%;
+}
+
+.question {
+  background-color: red;
+  width: 100%;
+}
+
+.questionElement {
+  background-color: #E0E0E0;
+  float: left;
+  width: 400px;
+  height: 400px;
+  margin: 10px;
+  padding: 10px;
+}
+
+#overlay {
+    visibility: hidden;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width:100%;
+    height:100%;
+    text-align:center;
+    /*z-index: 1000;*/
+}
+
+#overlay .overlaySegment {
+    width: 70%;
+    height: 500px;
+    margin: 0 auto;
+    margin-top: 100px;
+    background-color: rgba(092,092,092,0.9);
+    text-align:center;
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 300;
+    font-size: 18;
+    color: #66CC00 ;
+    padding: 20px;
+}
+
+.overlayQuestion, .overlayAnswer, .overlaySubmit{
+  width: 100%;
+}
+.overlayQuestion, .overlaySubmit {
+  height: 100px;
+}
+
+.overlayAnswer {
+  height: 300px;
+}

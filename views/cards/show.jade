@@ -2,6 +2,26 @@ extends ../layout
 
 block content
   h1 #{category.name}
-  
-  h1 Start Game
-  a(href='/cards/' + category._id + '/questions/new') Submit A New Question
+  if questions.length > 0
+    a(href='/cards/' + category._id + '/questions/new') Submit A New Question
+    p
+    div.question
+      for question in questions
+        a(href="#" id=question._id onclick='overlay('+JSON.stringify(question)+')')
+          div.questionElement
+            p= question.question
+  else 
+    p There are no questions for this category yet. 
+    a(href='/cards/' + category._id + '/questions/new') Submit A New Question
+    
+  div#overlay
+    div.overlaySegment
+      form(action="/cards/" method="post")
+        div.overlayQuestion question
+        div.overlayAnswer
+        div.overlaySubmit
+          input(type="submit" value="Submit")
+          p
+          a(href="#" onclick='overlay()') Cancel
+      
+    
