@@ -71,6 +71,24 @@ app.use('/', routes);
 app.use('/', authRoutes);
 app.use('/users', users);
 
+app.use(function (req, res, next){
+  if(req.isAuthenticated()) {
+    unirest.get('https://api.linkedin.com/v1/people/~:(id,num-connections,picture-url)')
+      .header('Authorization', 'Bearer ' + req.user.token)
+      .header('x-li-format', 'json')
+      .end(function (response) {
+        console.log(req.user.id);
+        functions.writeData(linkedUsers,req.user,function(records){
+          console.log(records);
+        })
+        res.render('cards/show', { profile: response.body });
+      })
+  } else {
+    res.render('index', { message: "notLoggedIn" });
+  }
+})
+
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
