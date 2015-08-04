@@ -124,6 +124,8 @@ h1 a {
 }
 .logout {
   float: right;
+  font-weight: 200;
+  font-size: 20px;
   background-color: #55505C;
   height: 50px;
   width: 120px;
@@ -171,6 +173,68 @@ h1 a {
 
 .error{
  color: red;
+}
+
+#loginCard {
+  margin: 0 auto;
+  text-align: center;
+  padding: 10px;
+  height: 450px;
+  width: 450px;
+}
+.loginFront {
+  box-sizing: border-box;
+  padding-top:115px;
+  font-size:40px;
+  background-color: #55505C;
+  color: white;
+  box-shadow: 10px 10px 5px rgba(93, 115, 126, .5);
+}
+.loginFront h1 {
+  color: white;
+}
+.loginBack {
+  box-sizing: border-box;
+  padding-top:80px;
+  background-color: rgb(93, 115, 126);
+  box-shadow: 10px 10px 5px rgba(85, 80, 92, .5);
+}
+
+.centerLogin {
+  margin-top: 35px;
+  text-align: center;
+}
+
+.centerLogin a{
+  font-size: 45px;
+  color:#5D737E;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.centerLogin a:hover{
+  font-size: 45px;
+  color:#55505C;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.item1 {
+  display:inline-block;
+  margin-left:25px;
+}
+
+.about {
+  margin-top: 50px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.names {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 300;
 }
 
 .category{

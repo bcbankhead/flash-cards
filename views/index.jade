@@ -1,19 +1,20 @@
 extends layout
 
 block content
-  h1 Login
-  p Welcome to #{title}
-  if message
-    |#{message}
-    
-  if user
-      p
-        |Hello #{user.displayName}
-        ||
-        a(href="/logout") Logout
-    else
-      p
-        a(href="/auth/linkedin") Login
+  div#loginCard
+    div.loginFront
+      h1 flashcards
+    div.loginBack
+      img(src="../images/bolt.png")
+  div.about 
+    p Your coding study buddy.
+  div.centerLogin
+    .item1
+      a(href="/auth/linkedin") Login
+    .item1
+      img(src="http://www.ijsaf.org/resources/linkedIn_logo_small.png")
+  div.names
+    |Created By  |  Barry Bankhead  |  Judy Lin  |  Vishwam Sankar  |  Anna Casper
 
-  if profile
-    img(src=profile.pictureUrl)
+    if profile
+      img(src=profile.pictureUrl)
