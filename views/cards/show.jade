@@ -1,6 +1,10 @@
 extends ../layout
 
 block content
+  div.logout
+    a(href="/cards") Home
+    span &nbsp &nbsp
+    a(href="/logout") Logout
   if questions.length > 0
     h1 #{category.name}
       a(href='/cards/' + category._id + '/questions/new') &nbsp - Submit A New Question
