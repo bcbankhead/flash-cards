@@ -80,3 +80,11 @@ document.getElementById('submitAnswer').addEventListener('click', function() {
     }
   });
 });
+
+// document.getElementById('loginCard').addEventListener('mouseover', function() {
+// $("#loginCard").flip(true);
+// }
+
+// setInterval(function () {
+//   $("#loginCard").flip(true);
+// },500);
