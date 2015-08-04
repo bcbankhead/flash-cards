@@ -1,12 +1,12 @@
 extends ../layout
 
 block content
-  div.logout
-    a(href="/logout") Logout  
+  include ../partials/header
   h1 Choose a Category
     a(href='/cards/new') &nbsp - Add New Category
   div.category
-    for val in data
-      div.categoryElement
-        a(href="/cards/" + val._id + '/show')
-          img(src=val.icon )
+   for val in data
+     div.categoryElement
+       div.inner
+         a(href="/cards/" + val._id + '/show')
+           img(src=val.icon )
