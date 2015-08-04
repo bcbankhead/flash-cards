@@ -9,6 +9,7 @@ block content
   div.category
    for val in data
      div.categoryElement
+      #answered
        div.inner
          a(href="/cards/" + val._id + '/show')
            img(src=val.icon )
