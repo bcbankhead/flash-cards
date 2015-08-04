@@ -20,3 +20,7 @@ form(method="post" action='/cards/questions/' + categoryId + "/multipleChoice")
   input(type="text" name="incorrectThree")
   p
   input(type="submit" value="Submit Question")
+  p
+  
+a(href='/cards/'+categoryId+'/show')
+  button Cancel

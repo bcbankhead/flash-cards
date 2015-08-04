@@ -1,19 +1,18 @@
 extends ../layout
 
 block content
-  div.logout
-    a(href="/cards") Home
-    span &nbsp &nbsp
-    a(href="/logout") Logout
+  include ../partials/header
+
   if questions.length > 0
     h1 #{category.name}
       a(href='/cards/' + category._id + '/questions/new') &nbsp - Submit A New Question
     p
-    div.question
+    div.category
       for question in questions
-        a(href="#" id=question._id onclick='overlay('+JSON.stringify(question)+')')
-          div.questionElement
-            p= question.question
+        div.categoryElement.question
+          div.inner
+            a(href="#" id=question._id onclick='overlay('+JSON.stringify(question)+')')
+              p= question.question
   else
     h1 #{category.name}
     p There are no questions for this category yet. 
