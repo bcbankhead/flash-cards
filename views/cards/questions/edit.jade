@@ -1,0 +1,12 @@
+extends ../../layout
+
+block content
+
+  include ../../partials/header
+  
+  div.new
+    h1 Edit Question 
+    if errors
+      for error in errors
+        p.error #{error}
+    include ../../partials/multipleChoice
