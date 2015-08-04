@@ -13,6 +13,7 @@ block content
           div.inner
             if question.answered
               div.questionElementAnswered
+                img(src='/images/check.png')
                 p= question.question
             else
               div.questionElementAnswered    
@@ -48,7 +49,8 @@ block content
               <gcse:search linktarget="_parent"></gcse:search>
           button#submitAnswer Submit
           p
-          a(href="" onclick='overlay()') Cancel
+          a(href="" onclick='overlay()')
+            button.cancel Cancel
       div.back 
         div.result
         div.points
@@ -58,10 +60,10 @@ block content
             input(type="hidden" name="userAnswer" id="userAnswerChallengeRedirect")
             input(type="hidden" name='categoryID' id="categoryIDChallengeRedirect" value=category._id)
             input(type="hidden" name="questionID" id="questionIDChallengeRedirect") 
-            input(type="submit" value="I want to answer more questions about " + category.name)
+            input(type="submit" value="More Questions")
           form(action='/cards/submit/goToCategories' method='post')
             input(type="hidden" name="points" id="userPointsCategoriesRedirect")
             input(type="hidden" name="userAnswer" id="userAnswerCategoryRedirect")
             input(type="hidden" name='categoryID' id="categoryIDCategoryRedirect" value=category._id)
             input(type="hidden" name="questionID" id="questionIDCategoryRedirect") 
-            input(type="submit" value="I want to choose a different category")
+            input(type="submit" value="Different Category")

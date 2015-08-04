@@ -47,6 +47,14 @@ h1 a {
   text-align: center;
 }
 
+.questionElementAnswered img {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 10px;
+  left: 15px;
+}
+
 .questionElement p{
   margin-top:50px;
 }
@@ -70,31 +78,35 @@ h1 a {
     font-weight: 300;
     font-size: 18;
     padding: 20px;
+    margin-top: 3%;
 }
 
-
-
-.overlayQuestion, .overlayAnswer, .overlaySubmit{
+.overlayQuestion {
   width: 100%;
+  height: 75px;
 }
-.overlayQuestion, .overlaySubmit {
-  height: 100px;
+
+.overlaySubmit {
+  width: 100%;
+  height:200px;
 }
 
 .overlayAnswer {
-  height: 300px;
+  text-align: left;
+  width: 100%;
+  height: 225px;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.overlayAnswer label {
+  color: white;
+  padding-left: 10px;
 }
 
 #hint {
   display:inline-block;
   color: white;
-  padding:5px;
-  cursor: pointer;
-}
-
-#hint:hover {
-  display:inline-block;
-  color: red;
   padding:5px;
   cursor: pointer;
 }
@@ -136,7 +148,8 @@ h1 a {
   padding-top:70px;
   color: white;
   font-size:40px;
-  background-color: rgba(93, 115, 126, .95);
+  /*background-color: rgba(93, 115, 126, .95);*/
+  background-color: #7FC6A4;
   box-shadow: 10px 10px 5px rgba(85, 80, 92, .5);
 }
 .logout {
@@ -327,9 +340,18 @@ input[type='submit'], button {
   font-size: 17px;
   border: 0px;
   border-radius: 10px;
+  margin: 10px;
 }
 
 button {
+  background-color: #55505C;
+}
+
+#overlay button, .correct {
+  background-color: #7FC6A4;
+}
+
+.cancel, #overlay .cancel, .wrong {
   background-color: #773344;
 }
 
