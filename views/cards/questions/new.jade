@@ -2,22 +2,7 @@ extends ../../layout
 
 block content
   h1 Add a New Question 
-  if questionType
-    if questionType === 'openEnded'
-      include ../../partials/openEnded
-    if questionType === 'multipleChoice'
-      include ../../partials/multipleChoice
-    if questionType === 'codeSpecific'
-      include ../../partials/codeSpecific
-  else
-    form(method='post' action='/cards/' + categoryId + '/questions/new')
-      label(for='questionType') What type of question?
-      p
-      select(name='questionType' id="questionType")
-        option(name='questionType' disabled selected) Select One...
-        option(value='multipleChoice' name='questionType') Multiple choice
-        option(value='openEnded' name='questionType') Open Ended
-        option(value='codeSpecific' name='questionType') Code Specific
-      p
-      input(type='submit' value='Submit')
-    
+  if errors
+    for error in errors
+      p.error #{error}
+  include ../../partials/multipleChoice

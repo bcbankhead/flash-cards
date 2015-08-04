@@ -117,3 +117,7 @@ h1 a {
 .logout {
   float: right;
 }
+
+.error{
+ color: red;
+}

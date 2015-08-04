@@ -4,24 +4,39 @@ var db = require('monk')(process.env.MONGOLAB_URI);
 var categoryCollection = db.get('categories');
 var questionCollection = db.get('questions');
 var userAnswerCollection = db.get('userAnswers');
+var functions = require('../lib/serverside.js');
 
 router.get('/', function(req, res, next) {
   categoryCollection.find({}, function(err, data){
     res.render('cards/index', {data: data});
-  })
+  });
 });
 
 router.get('/new', function(req, res, next){
   res.render('cards/new');
 })
 
+// router.post('/new', function(req, res, next){
+//   categoryCollection.insert({
+//     name: req.body.categoryName,
+//     icon: req.body.categoryIcon
+//   }, function(err, data){
+//     res.redirect('/cards/' + data._id + '/show')
+//   })
+// })
+
 router.post('/new', function(req, res, next){
-  categoryCollection.insert({
-    name: req.body.categoryName,
-    icon: req.body.categoryIcon
-  }, function(err, data){
-    res.redirect('/cards/' + data._id + '/show')
-  })
+ var errors = functions.validateNewCategory(req.body.categoryName, req.body.categoryIcon)
+ if(errors.length === 0){
+   categoryCollection.insert({
+     name: req.body.categoryName,
+     icon: req.body.categoryIcon
+   }, function(err, data){
+     res.redirect('/cards/' + data._id + '/show')
+   })
+ } else {
+   res.render('cards/new', {errors: errors, categoryName: req.body.categoryName, categoryIcon: req.body.categoryIcon})
+ }
 })
 
 router.get('/:id/show', function(req, res, next) {
@@ -52,20 +67,55 @@ router.post('/questions/:id/openEnded', function(req, res, next){
   })
 })
 
+// router.post('/questions/:id/multipleChoice', function(req, res, next){
+//   questionCollection.insert({
+//     categoryId: req.params.id,
+//     //userId: cookie
+//     questionType: 'multipleChoice',
+//     question: req.body.question,
+//     correctAnswer: req.body.correctAnswer,
+//     explanation: req.body.explanation,
+//     incorrectAnswers: [ req.body.incorrectOne,
+//                         req.body.incorrectTwo,
+//                         req.body.incorrectThree ]
+//   }, function(err, data){
+//     res.redirect('/cards/' + req.params.id + '/show');
+//   })
+// });
+
 router.post('/questions/:id/multipleChoice', function(req, res, next){
-  questionCollection.insert({
-    categoryId: req.params.id,
-    //userId: cookie
-    questionType: 'multipleChoice',
-    question: req.body.question,
-    correctAnswer: req.body.correctAnswer,
-    explanation: req.body.explanation,
-    incorrectAnswers: [ req.body.incorrectOne,
-                        req.body.incorrectTwo,
-                        req.body.incorrectThree ]
-  }, function(err, data){
-    res.redirect('/cards/' + req.params.id + '/show');
-  })
+ var errors = functions.validateNewQuestion(
+   req.body.question,
+   req.body.correctAnswer,
+   req.body.explanation,
+   req.body.incorrectOne,
+   req.body.incorrectTwo,
+   req.body.incorrectThree)
+ if(errors.length === 0){
+   questionCollection.insert({
+     categoryId: req.params.id,
+     //userId: cookie
+     questionType: 'multipleChoice',
+     question: req.body.question,
+     correctAnswer: req.body.correctAnswer,
+     explanation: req.body.explanation,
+     incorrectAnswers: [ req.body.incorrectOne,
+                         req.body.incorrectTwo,
+                         req.body.incorrectThree ]
+   }, function(err, data){
+     res.redirect('/cards/' + req.params.id + '/show');
+   })
+ } else {
+   res.render('cards/questions/new', {
+     errors: errors,
+     categoryId: req.params.id,
+     question: req.body.question,
+     correctAnswer: req.body.correctAnswer,
+     explanation: req.body.explanation,
+     incorrectOne: req.body.incorrectOne,
+     incorrectTwo: req.body.incorrectTwo,
+     incorrectThree: req.body.incorrectThree})
+ }
 });
 
 router.post('/questions/:id/codeSpecific', function(req, res, next){
@@ -97,6 +147,8 @@ router.post('/submit/:redirect', function (req, res, next) {
     }
   })
 })
+
+
 
 
 module.exports = router;
