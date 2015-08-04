@@ -1,5 +1,6 @@
 //$("#submitAnswer").click(function() {
     $(".overlaySegment").flip({
-      trigger: 'manual'
+      trigger: 'manual',
+      axis: 'x'
     });
 //});

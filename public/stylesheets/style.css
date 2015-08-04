@@ -108,10 +108,10 @@ h1 a {
 }
 
 .front {
-  background-color: rgba(092,092,092,0.9);
+  background-color: #E0E0E0;
 }
 .back {
-  background-color: white;
+  background-color: #E0E0E0;
 }
 .logout {
   float: right;
