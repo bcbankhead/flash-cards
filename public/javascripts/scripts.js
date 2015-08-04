@@ -32,11 +32,10 @@ function overlay(question) {
     modal.style.visibility = (modal.style.visibility == "visible") ? "hidden" : "visible";
  }
 
-
 document.getElementById('submitAnswer').addEventListener('click', function() {
-  console.log(questionObject._id);
   var answers = document.getElementsByTagName('input')
   var correctAnswer = questionObject.correctAnswer;
+  var cardBack = document.getElementsByClassName('back')[0];
   [].forEach.call(answers, function (e,i,a) {
     if(e.checked) {
       if(e.value === correctAnswer){
@@ -56,6 +55,7 @@ document.getElementById('submitAnswer').addEventListener('click', function() {
         questionIDCategoryRedirect.value = questionObject._id
         var questionIDChallengeRedirect = document.getElementById('questionIDChallengeRedirect')
         questionIDChallengeRedirect.value = questionObject._id;
+        cardBack.className = cardBack.className + " correct"
         $(".overlaySegment").flip(true);
       } else {
         var result = document.getElementsByClassName('result')[0];
@@ -70,11 +70,11 @@ document.getElementById('submitAnswer').addEventListener('click', function() {
         userPointsCategoriesRedirect.value = 0;
         var userAnswerCategoryRedirect = document.getElementById('userAnswerCategoryRedirect')
         userAnswerCategoryRedirect.value = e.value;
-        console.log(questionObject._id, typeof(questionObject._id))
         var questionIDChallengeRedirect = document.getElementById('questionIDChallengeRedirect')
         questionIDChallengeRedirect.value = questionObject._id;
         var questionIDCategoryRedirect = document.getElementById('questionIDCategoryRedirect')
         questionIDCategoryRedirect.value = questionObject._id
+        cardBack.className = cardBack.className + " wrong"
         $(".overlaySegment").flip(true);
       }
     }
