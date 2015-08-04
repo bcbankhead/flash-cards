@@ -1,8 +1,12 @@
 extends ../../layout
 
 block content
-  h1 Add a New Question 
-  if errors
-    for error in errors
-      p.error #{error}
-  include ../../partials/multipleChoice
+
+  include ../../partials/header
+  
+  div.new
+    h1 Add a New Question 
+    if errors
+      for error in errors
+        p.error #{error}
+    include ../../partials/multipleChoice
