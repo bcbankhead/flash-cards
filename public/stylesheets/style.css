@@ -1,10 +1,15 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 a {
   color: #00B7FF;
+}
+
+p {
+  font-weight: 200;
+  font-size: 20px;
 }
 
 .category {
@@ -39,12 +44,16 @@ h1 a {
 .questionElement {
   background-color: #E0E0E0;
   float: left;
-  width: 400px;
-  height: 400px;
+  width: 220px;
+  height: 200px;
   margin: 10px;
   padding: 10px;
+  text-align: center;
 }
 
+.questionElement p{
+  margin-top:50px;
+}
 #overlay {
     visibility: hidden;
     position: absolute;
@@ -58,10 +67,9 @@ h1 a {
 
 #overlay .overlaySegment {
     position:relative;
-    width: 70%;
+    width: 50%;
     height: 500px;
     margin: 0 auto;
-    margin-top: 100px;
     text-align:center;
     font-family: 'Josefin Sans', sans-serif;
     font-weight: 300;
