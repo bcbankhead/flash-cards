@@ -65,7 +65,7 @@ router.post('/:id/questions/new', function(req, res, next){
 router.post('/questions/:id/openEnded', function(req, res, next){
   questionCollection.insert({
     categoryId: req.params.id,
-    // userId: cookie
+    userId: req.user.id,
     questionType: 'openEnded',
     question: req.body.question,
     answer: req.body.answer
@@ -101,7 +101,7 @@ router.post('/questions/:id/multipleChoice', function(req, res, next){
  if(errors.length === 0){
    questionCollection.insert({
      categoryId: req.params.id,
-     //userId: cookie
+     userId: req.user.id,
      questionType: 'multipleChoice',
      question: req.body.question,
      correctAnswer: req.body.correctAnswer,
@@ -116,12 +116,13 @@ router.post('/questions/:id/multipleChoice', function(req, res, next){
    res.render('cards/questions/new', {
      errors: errors,
      categoryId: req.params.id,
+     question: {
      question: req.body.question,
      correctAnswer: req.body.correctAnswer,
      explanation: req.body.explanation,
      incorrectOne: req.body.incorrectOne,
      incorrectTwo: req.body.incorrectTwo,
-     incorrectThree: req.body.incorrectThree})
+     incorrectThree: req.body.incorrectThree}})
  }
 });
 
@@ -155,7 +156,11 @@ router.post('/submit/:redirect', function (req, res, next) {
   })
 })
 
-
+router.get('/:id/edit', function(req, res, next){
+  questionCollection.findOne({_id: req.params.id}, function(err, question){
+    res.render('cards/questions/edit', {question: question})
+  })
+})
 
 
 module.exports = router;

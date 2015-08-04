@@ -1,0 +1,28 @@
+extends ../layout
+
+block content
+
+  div.headerSection
+    div.icon
+      img(src ="/images/bolt.png")
+    div.headerElement
+      a(href="/cards") flashcards
+    div.logout
+      a(href="/logout") Logout
+  div.profile
+    div.profileImage
+      img(src=profile.pictureUrls.values[0])
+    div.userName
+      h1= profile.firstName
+      h2 Total Score: #{totalScore} / #{questionsAnswered}
+    div.questionsSubmitted
+      h2 Questions Submitted by #{profile.firstName}:
+      for question in questionsSubmitted
+        div.questionText
+          p #{question.question}
+        div.edit
+          a(href="/cards/"+question._id+"/edit") 
+            p Edit
+        div.delete
+          form(action="/delete" method="post")
+            button#delete X

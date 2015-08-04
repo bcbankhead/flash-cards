@@ -1,23 +1,23 @@
 form(method="post" action='/cards/questions/' + categoryId + "/multipleChoice")
   label(for="question") Question: 
   p
-  textarea(name="question" id="question")
+  textarea(name="question" id="question") #{question.question}
   p
   label(for="correctAnswer") Correct Answer:
   p
-  input(type="text" name="correctAnswer" id="correctAnswer")
+  input(type="text" name="correctAnswer" id="correctAnswer" value=question.correctAnswer)
   p
   label(for="explanation") Explanation of Correct Answer:
   p
-  textarea(name="explanation" id="explanation")
+  textarea(name="explanation" id="explanation") #{question.explanation}
   p
   label(for="incorrectAnswers") Incorrect Answers:
   p
-  input(type="text" name="incorrectOne")
+  input(type="text" name="incorrectOne" value=question.incorrectAnswers[0])
   p
-  input(type="text" name="incorrectTwo")
+  input(type="text" name="incorrectTwo" value=question.incorrectAnswers[1])
   p
-  input(type="text" name="incorrectThree")
+  input(type="text" name="incorrectThree" value=question.incorrectAnswers[2])
   p
   input(type="submit" value="Submit Question")
   p
