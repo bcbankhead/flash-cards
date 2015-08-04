@@ -12,9 +12,14 @@ block content
         div.categoryElement
           div.inner
             if question.answered
-              div.questionElementAnswered
-                img(src='/images/check.png')
-                p= question.question
+              if question.answered === 'true'
+                div.questionElementAnswered
+                  img(src='/images/check2.png')
+                  p= question.question
+              else 
+                div.questionElementAnswered
+                  img(src='/images/x.png')
+                  p= question.question
             else
               div.questionElementAnswered    
                 a(href="#" id=question._id onclick='overlay('+JSON.stringify(question)+')')
