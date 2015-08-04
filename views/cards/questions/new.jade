@@ -9,4 +9,7 @@ block content
     if errors
       for error in errors
         p.error #{error}
-    include ../../partials/multipleChoice
+    form(method="post" action='/cards/questions/' + categoryId + "/multipleChoice")
+      include ../../partials/multipleChoice
+    a(href='/cards/'+categoryId+'/show')
+      button.cancel Cancel
