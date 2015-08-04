@@ -1,0 +1,11 @@
+extends ../layout
+
+block content
+  div.logout
+    a(href="/cards") Home
+    span &nbsp &nbsp
+    a(href="/logout") Logout
+    p
+    a(href="/users/" + userId + "/edit") Edit Profile
+  div.profileBody
+    h1 Username

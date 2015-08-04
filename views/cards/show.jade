@@ -5,6 +5,8 @@ block content
     a(href="/cards") Home
     span &nbsp &nbsp
     a(href="/logout") Logout
+    p
+    a(href="/users/profile") View Profile
   if questions.length > 0
     h1 #{category.name}
       a(href='/cards/' + category._id + '/questions/new') &nbsp - Submit A New Question
