@@ -41,7 +41,7 @@ document.getElementById('submitAnswer').addEventListener('click', function() {
     if(e.checked) {
       if(e.value === correctAnswer){
         var result = document.getElementsByClassName('result')[0];
-        result.innerHTML = 'Correct'
+        result.innerHTML = 'Correct!'
         var points = document.getElementsByClassName('points')[0];
         points.innerHTML = 'You earned 1 point!'
         var userPointChallengeRedirect = document.getElementById('userPointChallengeRedirect')
@@ -59,7 +59,7 @@ document.getElementById('submitAnswer').addEventListener('click', function() {
         $(".overlaySegment").flip(true);
       } else {
         var result = document.getElementsByClassName('result')[0];
-        result.innerHTML = 'Incorrect'
+        result.innerHTML = 'Incorrect!'
         var points = document.getElementsByClassName('points')[0];
         points.innerHTML = 'The correct answer is '+correctAnswer
         var userPointChallengeRedirect = document.getElementById('userPointChallengeRedirect')

@@ -8,7 +8,7 @@ h1 {
   color: #5D737E;
 }
 a {
-  color: #00B7FF;
+  color: #7FC6A4;
   font-family: 'Roboto', sans-serif;
   text-decoration: none;
 }
@@ -27,8 +27,19 @@ h1 a {
 }
 
 .questionElement {
-  background-color: #E0E0E0;
+  background-color: rgba(85, 80, 92, .95);
   float: left;
+  width: 220px;
+  height: 200px;
+  margin: 10px;
+  padding: 10px;
+  text-align: center;
+}
+
+.questionElementAnswered {
+  background-color: rgba(85, 80, 92, .95);
+  float: left;
+  color: white;
   width: 220px;
   height: 200px;
   margin: 10px;
@@ -53,13 +64,11 @@ h1 a {
 #overlay .overlaySegment {
     position:relative;
     width: 50%;
-    height: 500px;
+    height: 600px;
     margin: 0 auto;
     text-align:center;
-    font-family: 'Josefin Sans', sans-serif;
     font-weight: 300;
     font-size: 18;
-    color: #66CC00 ;
     padding: 20px;
 }
 
@@ -78,27 +87,57 @@ h1 a {
 
 #hint {
   display:inline-block;
-  background-color: rgb(255, 0, 0);
+  color: white;
   padding:5px;
+  cursor: pointer;
 }
+
+#hint:hover {
+  display:inline-block;
+  color: red;
+  padding:5px;
+  cursor: pointer;
+}
+
 
 #hintOverlay {
   position:absolute;
-  top:10px;
-  left: 10px;
+  top:0px;
+  left: -320px;
   display:none;
   border:1px solid black;
-  width:200px;
-  height:500px;
-  background-color: rgba(255, 255, 255, .5);
+  width:300px;
+  height:400px;
+  color: green;
+  background-color: rgba(255, 255, 255, .85);
   overflow: auto;
+  transition: all 0.5s ease-out;
 }
 
 .front {
-  background-color: rgba(092,092,092,0.9);
+  box-sizing: border-box;
+  padding-top:70px;
+  font-size:40px;
+  background-color: rgba(85, 80, 92, .95);
+  color: white;
+  box-shadow: 10px 10px 5px rgba(93, 115, 126, .5);
+}
+.result {
+  font-size: 80px;
+  font-weight: bolder;
+  margin-top: 20px;
+}
+.result, .points, .overlayBackButtons {
+  height: 100px;
+  padding-top: 20px;
 }
 .back {
-  background-color: white;
+  box-sizing: border-box;
+  padding-top:70px;
+  color: white;
+  font-size:40px;
+  background-color: rgba(93, 115, 126, .95);
+  box-shadow: 10px 10px 5px rgba(85, 80, 92, .5);
 }
 .logout {
   float: right;
@@ -229,18 +268,14 @@ h1 a {
  transform: scale(0);
  transition: .2s ease all;
  text-align: center;
- background-color: #E0E0E0;
- margin: 10px;
+ /*background-color: #E0E0E0;*/
+ margin: 40px;
  display: inline-block;
 }
 
 .categoryElement img {
   height: 100%;
   width: 100%;
-}
-
-.question {
-  width: 400px;
 }
 
 .inner{

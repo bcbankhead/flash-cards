@@ -42,7 +42,14 @@ router.post('/new', function(req, res, next){
 router.get('/:id/show', function(req, res, next) {
   categoryCollection.findOne({_id: req.params.id}, function(err, category){
     questionCollection.find({categoryId: req.params.id}, function(err, questions){
-      res.render('cards/show', {category: category, questions: questions});
+      console.log(req.user.id);
+      userAnswerCollection.find({userId: req.user.id}, function(err, userAnswers){
+        functions.ifAnswered(userAnswers, questions, function(result){
+          console.log('---------------------');
+          console.log(result);
+          res.render('cards/show', {category: category, questions: result});
+        })
+      })
     })
   })
 });

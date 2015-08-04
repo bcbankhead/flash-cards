@@ -9,10 +9,15 @@ block content
     p
     div.category
       for question in questions
-        div.categoryElement.question
+        div.categoryElement
           div.inner
-            a(href="#" id=question._id onclick='overlay('+JSON.stringify(question)+')')
-              p= question.question
+            if question.answered
+              div.questionElementAnswered
+                p= question.question
+            else
+              div.questionElementAnswered    
+                a(href="#" id=question._id onclick='overlay('+JSON.stringify(question)+')')
+                  p= question.question
   else
     h1 #{category.name}
     p There are no questions for this category yet. 
@@ -24,7 +29,7 @@ block content
         div.overlayQuestion 
         div.overlayAnswer
         div.overlaySubmit
-          #hint Hint
+          button#hint Hint
           #hintOverlay
             |Hint:
             :verbatim
