@@ -1,15 +1,19 @@
 extends ../layout
 
 block content
-  h1 Add New Category
-  if errors
-    for error in errors
-      p.error #{error}
-  form(action="/cards/new" method="post")
-    input(type="text" name="categoryName" placeholder="Category Name" value=categoryName)
-    p
-    input(type="url" name="categoryIcon" placeholder="Category Icon URL" value=categoryIcon)
-    p
-    input(type="submit" value="Create New Category")
-    p
-    a(href='/cards') Cancel
+  include ../partials/header
+  
+  div.new
+    h1 Add New Category
+    if errors
+      for error in errors
+        p.error #{error}
+    form(action="/cards/new" method="post")
+      input(type="text" name="categoryName" placeholder="Category Name" value=categoryName)
+      p
+      input(type="url" name="categoryIcon" placeholder="Category Icon URL" value=categoryIcon)
+      p
+      input(type="submit" value="Create New Category")
+      p
+    a(href='/cards')
+      button Cancel
