@@ -187,9 +187,8 @@ router.post('/questions/:questId/edit', function(req, res, next){
     req.body.incorrectThree)
   if(errors.length === 0){
     console.log(req.params.id);
-   questionCollection.findOne({_id: req.params.id}, function(err, question){
+   questionCollection.findOne({_id: req.params.questId}, function(err, question){
     questionCollection.update(
-        {_id: req.params.id}, {
         {_id: req.params.questId}, {$set: {
         categoryId: question.categoryId,
         userId: req.user.id,
