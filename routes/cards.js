@@ -91,6 +91,7 @@ router.post('/questions/:id/openEnded', function(req, res, next){
 // });
 
 router.post('/questions/:id/multipleChoice', function(req, res, next){
+  console.log(req.body.correctAnswer);
  var errors = functions.validateNewQuestion(
    req.body.question,
    req.body.correctAnswer,
@@ -175,7 +176,7 @@ router.post('/:id/delete', function(req, res, next){
 
 
 
-router.post('/questions/:id/edit', function(req, res, next){
+router.post('/:id/edit', function(req, res, next){
   console.log('----------------------------------');
   var errors = functions.validateNewQuestion(
     req.body.question,
@@ -200,10 +201,10 @@ router.post('/questions/:id/edit', function(req, res, next){
         res.redirect('/users/profile');
     })
   } else {
-    res.render('cards/questions/new', {
+    res.render('cards/questions/edit', {
       errors: errors,
-      categoryId: req.params.id,
       question: {
+      _id: req.params.id,
       question: req.body.question,
       correctAnswer: req.body.correctAnswer,
       explanation: req.body.explanation,
