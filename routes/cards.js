@@ -160,7 +160,7 @@ router.post('/submit/:redirect', function (req, res, next) {
   })
 })
 
-router.get('/:catId/questions/:questId/edit', function(req, res, next){
+router.get('/questions/:questId/edit', function(req, res, next){
   questionCollection.findOne({_id: req.params.questId}, function(err, question){
     console.log(question);
     res.render('cards/questions/edit', {question: question})

@@ -21,7 +21,7 @@ block content
         div.questionText
           p #{question.question}
         div.edit
-          a(href="/cards/"+categoryId+"/questions/"+question._id+"/edit") 
+          a(href="/cards/questions/"+question._id+"/edit") 
             p Edit
         div.delete
           form(action="/cards/"+question._id+"/delete" method="post")
