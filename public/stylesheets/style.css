@@ -412,8 +412,9 @@ button {
 .edit {
   color: #773344;
   float: left;
-  width: 20px;
+  width: 50px;
 }
+
 .delete {
   float: right;
   width: 20px;
