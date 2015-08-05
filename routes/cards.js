@@ -91,6 +91,7 @@ router.post('/questions/:id/openEnded', function(req, res, next){
 // });
 
 router.post('/questions/:id/multipleChoice', function(req, res, next){
+  console.log(req.body.correctAnswer);
  var errors = functions.validateNewQuestion(
    req.body.question,
    req.body.correctAnswer,
@@ -159,8 +160,8 @@ router.post('/submit/:redirect', function (req, res, next) {
   })
 })
 
-router.get('/:id/edit', function(req, res, next){
-  questionCollection.findOne({_id: req.params.id}, function(err, question){
+router.get('/:catId/questions/:questId/edit', function(req, res, next){
+  questionCollection.findOne({_id: req.params.questId}, function(err, question){
     console.log(question);
     res.render('cards/questions/edit', {question: question})
   })
@@ -175,7 +176,7 @@ router.post('/:id/delete', function(req, res, next){
 
 
 
-router.post('/questions/:id/edit', function(req, res, next){
+router.post('/questions/:questId/edit', function(req, res, next){
   console.log('----------------------------------');
   var errors = functions.validateNewQuestion(
     req.body.question,
@@ -189,6 +190,7 @@ router.post('/questions/:id/edit', function(req, res, next){
    questionCollection.findOne({_id: req.params.id}, function(err, question){
     questionCollection.update(
         {_id: req.params.id}, {
+        {_id: req.params.questId}, {$set: {
         categoryId: question.categoryId,
         userId: req.user.id,
         questionType: 'multipleChoice',
@@ -198,15 +200,15 @@ router.post('/questions/:id/edit', function(req, res, next){
         incorrectAnswers: [ req.body.incorrectOne,
                             req.body.incorrectTwo,
                             req.body.incorrectThree ]
-      }, function(err, data){
+      }}, function(err, data){
         res.redirect('/users/profile');
       })
     })
   } else {
-    res.render('cards/questions/new', {
+    res.render('cards/questions/edit', {
       errors: errors,
-      categoryId: req.params.id,
       question: {
+      _id: req.params.id,
       question: req.body.question,
       correctAnswer: req.body.correctAnswer,
       explanation: req.body.explanation,
