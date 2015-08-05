@@ -42,8 +42,11 @@ router.post('/new', function(req, res, next){
 router.get('/:id/show', function(req, res, next) {
   categoryCollection.findOne({_id: req.params.id}, function(err, category){
     questionCollection.find({categoryId: req.params.id}, function(err, questions){
+      console.log(req.user.id);
       userAnswerCollection.find({userId: req.user.id}, function(err, userAnswers){
         functions.ifAnswered(userAnswers, questions, function(result){
+          console.log('---------------------');
+          console.log(result);
           res.render('cards/show', {category: category, questions: result});
         })
       })
@@ -88,6 +91,7 @@ router.post('/questions/:id/openEnded', function(req, res, next){
 // });
 
 router.post('/questions/:id/multipleChoice', function(req, res, next){
+  console.log(req.body.correctAnswer);
  var errors = functions.validateNewQuestion(
    req.body.question,
    req.body.correctAnswer,
@@ -140,6 +144,7 @@ router.post('/questions/:id/codeSpecific', function(req, res, next){
 })
 
 router.post('/submit/:redirect', function (req, res, next) {
+  console.log(req.body);
   userAnswerCollection.insert({
     userId: req.user.id,
     questionId: req.body.questionID,
@@ -155,24 +160,24 @@ router.post('/submit/:redirect', function (req, res, next) {
   })
 })
 
-router.get('/:id/edit', function(req, res, next){
-  questionCollection.findOne({_id: req.params.id}, function(err, question){
 router.get('/:catId/questions/:questId/edit', function(req, res, next){
   questionCollection.findOne({_id: req.params.questId}, function(err, question){
+    console.log(question);
     res.render('cards/questions/edit', {question: question})
   })
 })
 
 router.post('/:id/delete', function(req, res, next){
   questionCollection.remove({_id: req.params.id}, function(err, question){
+    console.log(question);
     res.redirect('/users/profile')
   })
 })
 
-router.post('/questions/:id/edit', function(req, res, next){
 
 
 router.post('/questions/:questId/edit', function(req, res, next){
+  console.log('----------------------------------');
   var errors = functions.validateNewQuestion(
     req.body.question,
     req.body.correctAnswer,
@@ -181,6 +186,7 @@ router.post('/questions/:questId/edit', function(req, res, next){
     req.body.incorrectTwo,
     req.body.incorrectThree)
   if(errors.length === 0){
+    console.log(req.params.id);
     questionCollection.update(
         {_id: req.params.questId}, {$set: {
         userId: req.user.id,
@@ -210,5 +216,4 @@ router.post('/questions/:questId/edit', function(req, res, next){
     })
   }
 })
-
 module.exports = router;
