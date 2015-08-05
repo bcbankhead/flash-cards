@@ -186,8 +186,10 @@ router.post('/questions/:id/edit', function(req, res, next){
     req.body.incorrectThree)
   if(errors.length === 0){
     console.log(req.params.id);
+   questionCollection.findOne({_id: req.params.id}, function(err, question){
     questionCollection.update(
         {_id: req.params.id}, {
+        categoryId: question.categoryId,
         userId: req.user.id,
         questionType: 'multipleChoice',
         question: req.body.question,
@@ -198,6 +200,7 @@ router.post('/questions/:id/edit', function(req, res, next){
                             req.body.incorrectThree ]
       }, function(err, data){
         res.redirect('/users/profile');
+      })
     })
   } else {
     res.render('cards/questions/new', {
