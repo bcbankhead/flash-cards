@@ -429,3 +429,16 @@ button {
   height: 40px;
   margin-top: 10px;
 }
+
+#notAnswered {
+  position:absolute;
+  top:20%;
+  padding-top: 50px;
+  margin:0 -150px;
+  display:none;
+  width: 300px;
+  height: 150px;
+  font-size: 20px;
+  background-color: rgba(255, 255, 255, 0.75);
+  border:1px solid black;
+}

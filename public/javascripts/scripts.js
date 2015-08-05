@@ -86,4 +86,27 @@ document.getElementById('submitAnswer').addEventListener('click', function() {
       }
     }
   });
+  var isAnswered =0;
+  for(var i =0; i < 4; i++){
+    if(answers[i].checked){
+       isAnswered += 1;
+    } else {
+      isAnswered += 0;
+    }
+    var notAnswered = document.getElementById('notAnswered')
+    if(isAnswered == 0){
+      notAnswered.style.display = 'inline-block'
+      notAnswered.addEventListener('click', function () {
+        notAnswered.style.display = 'none'
+      })
+    }
+  }
 });
+
+// document.getElementById('loginCard').addEventListener('mouseover', function() {
+// $("#loginCard").flip(true);
+// }
+
+// setInterval(function () {
+//   $("#loginCard").flip(true);
+// },500);
