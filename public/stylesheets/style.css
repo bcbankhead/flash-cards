@@ -454,6 +454,21 @@ button {
   width: 300px;
   height: 150px;
   font-size: 20px;
+  font-weight: bold;
   background-color: rgba(255, 255, 255, 0.75);
   border:1px solid black;
+}
+
+#hintClose {
+  position:absolute;
+  color:grey;
+  font-size:15px;
+  top:35px;
+  left:0px;
+  display:inline-block;
+  width: 295px;
+  height: 20px;
+  border:0px solid black;
+  text-align: right;
+  cursor: pointer;
 }
