@@ -102,8 +102,6 @@ document.getElementById('submitAnswer').addEventListener('click', function() {
     }
   }
 });
-<<<<<<< HEAD
-
 
 // document.getElementById('loginCard').addEventListener('mouseover', function() {
 // $("#loginCard").flip(true);
@@ -112,5 +110,3 @@ document.getElementById('submitAnswer').addEventListener('click', function() {
 // setInterval(function () {
 //   $("#loginCard").flip(true);
 // },500);
-=======
->>>>>>> f306f64ab3bf70930c41b80a30ea3ed6df7f2c5b
