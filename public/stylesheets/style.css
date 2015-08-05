@@ -423,7 +423,7 @@ button {
 
 .questionText {
   float: left;
-  width: 85%;
+  min-width: 85%;
 }
 
 .edit {
