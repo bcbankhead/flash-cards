@@ -26,7 +26,7 @@ function overlay(question) {
           input.value = answerArray[i];
           input.name = 'selectedAnswer'
           input.id = e;
-          label.for = e;
+          label.htmlFor = e;
           label.innerHTML = e;
           p.appendChild(input);
           p.appendChild(label);
