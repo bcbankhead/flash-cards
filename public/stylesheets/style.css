@@ -405,16 +405,23 @@ button {
 
 .userName {
   font-size: 30px;
-  padding: 20px;
-  text-align: left;
-  display: inline;
+  text-align: center;
+  display: inline-block;
+  margin-left: 30px;
   float: left;
   width: 400px;
   height: 300px;
 }
-.userName h1 {
+.userName p {
   color: #773344;
+
+  padding:0;
+  margin:0;
+  text-align: center;
+  font-size: 50px;
+  font-weight: bolder;
 }
+
 .questionsSubmitted {
   padding-top: 0px;
   display: inline-block;
