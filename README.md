@@ -2,7 +2,7 @@
 https://protected-taiga-1284.herokuapp.com/
 
 ## Synopsis
-Flashcards provides people with a way to prepare for tests, interviews, etc by testing their knowledge in different categories. Users can add different categories/questions and see their score in their personalized profile page.
+Flashcards provides users with a way to prepare for tests, interviews, etc. by testing their knowledge in different categories. Users can add different categories/questions and see their score in their personalized profile page.
 
 ## Installation
 To run locally, run this in terminal:
